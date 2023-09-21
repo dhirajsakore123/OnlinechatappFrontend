@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './css/style.css'
+import {io} from 'socket.io-client'
+import ChatBox from './components/ChatBox'
 
-function App() {
+let socket=io("https://onlinechatappbackend.onrender.com")
+
+const App = () => {
+  const [text,setText]=useState('')
+  const [text2,setText2]=useState('')
+  const [toggle,setToggle]=useState(true)
+
+  const obj={
+    name:text2,
+    groupName:text
+  }
+
+
+
+    const joingroup=()=>{
+    if(text!=="" && text2 !==""){
+      socket.emit("JoinRoom",obj)
+      setToggle(false)
+    }
+      
+    }
+  
+// const sendgroupmessage=()=>{
+//     socket.emit("sendmessage",text)
+//     }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='entergroup'>
+    {toggle?
+     <>
+      <label htmlFor='group'>Gropu name</label>
+      <input type='text' id='group'  onChange={(e)=>setText(e.target.value)}/>
+      <label htmlFor='name'>User Name</label>
+      <input type='text2' id='name' onChange={(e)=>setText2(e.target.value)}/>
+      <button onClick={joingroup}>join group</button>
+      </>:
+      <ChatBox socket={socket} obj={obj}/>
+    }
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
