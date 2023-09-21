@@ -6,17 +6,11 @@ const [text,setText]=useState('')
 const [store,setStore]=useState([])
 const [value,setvalue]=useState('')
 
-const [toggle,setToggle]=useState(true)
+
 
 const handelSend=()=>{
      socket.emit("SendMessage",text) 
   setText('')
-    //  if(store.map((item)=>console.log(item.id===value.id))){
-    //     setClass(!className) 
-    //  }
-    //  if(store.map((item)=>console.log(item.id!==value.id))){
-    //     setClass(!className) 
-    //  }   
     
 }
 const handelChange=(e)=>{
@@ -38,7 +32,6 @@ console.log(store);
     <div className='group'>
       <div className='nav'>{obj.groupName}</div>
       <div className='chats'>
-        {/* <div className='sender'>ydgqIUELCIILWEDKCBWD</div> */}
        {
          store.map((item,index)=>{
           return(
