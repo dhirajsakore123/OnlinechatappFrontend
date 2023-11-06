@@ -37,6 +37,7 @@ const App = () => {
       <label htmlFor='name'>User Name</label>
       <input type='text2' id='name' onChange={(e)=>setText2(e.target.value)}/>
       <button onClick={joingroup}>join group</button>
+      <p>Instruction* enter your name and enter the gropu-name other particepent that joins group should enter the same group-name in order to chat width with other</p>
       </>:
       <ChatBox socket={socket} obj={obj}/>
     }
